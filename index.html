@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AN ĐỖ — Sport Videographer / Hà Nội</title>
+<meta name="description" content="Sport videographer based in Hanoi, Vietnam. Cinematic sport films for athletes, brands and teams. Basketball, Pickleball, Boxing. LUTs, SFX packs and courses." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@300;400;500;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  /* ------- TOKENS ------- */
+  :root{
+    --bg: #0a0a0a;
+    --bg-raised: #141413;
+    --bg-card: #17171a;
+    --ink: #f4f1ea;
+    --ink-dim: #b6b3ac;
+    --ink-mute: #6e6c66;
+    --line: rgba(244,241,234,0.10);
+    --line-strong: rgba(244,241,234,0.22);
+    --accent: #d4ff3a;            /* electric lime */
+    --accent-dim: #97b923;
+    --rec: #ff3b2f;               /* recording red */
+    --display: 'Anton', 'Bebas Neue', sans-serif;
+    --serif: 'Fraunces', 'Times New Roman', serif;
+    --sans: 'Manrope', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --maxw: 1440px;
+    --pad: clamp(20px, 4vw, 56px);
+  }
+
+  /* ------- RESET ------- */
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color: inherit; text-decoration: none; }
+  button{ font-family: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+
+  /* selection */
+  ::selection{ background: var(--accent); color:#000; }
+
+  /* ------- FILM GRAIN OVERLAY ------- */
+  body::before{
+    content:'';
+    pointer-events:none;
+    position:fixed;
+    inset:0;
+    z-index: 100;
+    opacity:.06;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/></svg>");
+  }
+
+  /* subtle scanline */
+  body::after{
+    content:'';
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index: 99;
+    background-image: linear-gradient(transparent 0, transparent 2px, rgba(255,255,255,.012) 3px, transparent 4px);
+    background-size: 100% 4px;
+  }
+
+  /* ------- HUD TOP BAR ------- */
+  .hud{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(10,10,10,0.7);
+    border-bottom: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .hud-inner{
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 10px var(--pad);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  .hud-left{ display:flex; gap:18px; align-items:center; }
+  .hud-right{ display:flex; gap:24px; align-items:center; justify-content:flex-end; }
+  .rec-dot{
+    display:inline-block; width:8px; height:8px; border-radius:50%;
+    background: var(--rec); margin-right: 6px;
+    animation: blink 1.6s infinite;
+    box-shadow: 0 0 12px var(--rec);
+  }
+  @keyframes blink{ 50%{ opacity: .25; } }
+  .hud nav{ display:flex; gap: 22px; }
+  .hud nav a{ position:relative; transition: color .2s; }
+  .hud nav a:hover{ color: var(--accent); }
+  .hud nav a:hover::after{
+    content:''; position:absolute; left:0; right:0; bottom:-4px; height:1px; background: var(--accent);
+  }
+  .hud-name{ color: var(--ink); font-weight: 500; }
+
+  /* ------- SECTION SCAFFOLD ------- */
+  section{ position: relative; padding: clamp(60px, 10vh, 120px) var(--pad); }
+  .container{ max-width: var(--maxw); margin: 0 auto; }
+  .eyebrow{
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-mute); display: inline-flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before{
+    content:''; display:inline-block; width: 28px; height: 1px; background: var(--accent);
+  }
+
+  /* ------- HERO ------- */
+  .hero{
+    padding-top: clamp(50px, 8vh, 90px);
+    padding-bottom: clamp(40px, 8vh, 80px);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .hero-meta-row{
+    display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: end;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-dim);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 20px;
+  }
+  .hero-meta-row .accent{ color: var(--accent); }
+
+  .hero h1{
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(56px, 13vw, 220px);
+    line-height: .85;
+    letter-spacing: -.01em;
+    text-transform: uppercase;
+    margin: 16px 0 0;
+  }
+  .hero h1 .em{
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    text-transform: lowercase;
+    letter-spacing: -.02em;
+    color: var(--ink);
+  }
+  .hero h1 .em-accent{
+    color: var(--accent);
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    text-transform: lowercase;
+  }
+  .hero-tagline{
+    margin-top: 28px;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(18px, 2vw, 24px);
+    color: var(--ink-dim);
+    max-width: 56ch;
+    line-height: 1.4;
+  }
+
+  /* ------- REEL ------- */
+  .reel{
+    margin-top: clamp(40px, 6vh, 64px);
+    position: relative;
+    aspect-ratio: 16/9;
+    width: 100%;
+    background: #000;
+    border: 1px solid var(--line-strong);
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .reel-bg{
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 40%, rgba(212,255,58,.08), transparent 50%),
+      radial-gradient(ellipse at 70% 60%, rgba(255,59,47,.08), transparent 50%),
+      linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  }
+  .reel-bg::after{
+    content:'';
+    position:absolute; inset:0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n2'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n2)' opacity='.18'/></svg>");
+    mix-blend-mode: overlay;
+  }
+  .reel-corners{
+    position: absolute; inset: 18px; pointer-events: none;
+  }
+  .reel-corners span{
+    position: absolute; width: 22px; height: 22px;
+    border: 1px solid var(--accent);
+  }
+  .reel-corners span:nth-child(1){ top: 0; left: 0; border-right: 0; border-bottom: 0; }
+  .reel-corners span:nth-child(2){ top: 0; right: 0; border-left: 0; border-bottom: 0; }
+  .reel-corners span:nth-child(3){ bottom: 0; left: 0; border-right: 0; border-top: 0; }
+  .reel-corners span:nth-child(4){ bottom: 0; right: 0; border-left: 0; border-top: 0; }
+  .reel-tc{
+    position: absolute; bottom: 24px; left: 24px;
+    font-family: var(--mono); font-size: 12px; color: var(--ink);
+    letter-spacing: .1em; opacity: .8;
+  }
+  .reel-rec{
+    position: absolute; top: 24px; right: 24px;
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: .14em; color: var(--ink); opacity: .9;
+  }
+  .reel-rec .dot{
+    display:inline-block; width: 8px; height: 8px; border-radius:50%; background: var(--rec);
+    margin-right: 8px; animation: blink 1.6s infinite;
+  }
+  .reel-play{
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  }
+  .reel-play-btn{
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 28px;
+    border: 1px solid var(--ink);
+    background: rgba(10,10,10,0.4);
+    backdrop-filter: blur(6px);
+    transition: all .3s;
+  }
+  .reel-play-btn:hover{ background: var(--accent); border-color: var(--accent); color:#000; }
+  .reel-play-btn .triangle{
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 8px 0 8px 14px;
+    border-color: transparent transparent transparent currentColor;
+  }
+  .reel-play-btn span{
+    font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+  }
+  .reel-title-overlay{
+    position: absolute; bottom: 24px; right: 24px;
+    text-align: right;
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 56px);
+    line-height: .9;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: .85;
+  }
+  .reel-title-overlay small{
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    color: var(--ink-dim);
+    margin-top: 6px;
+    font-weight: 400;
+  }
+
+  /* ------- MARQUEE ------- */
+  .marquee{
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    padding: 18px 0;
+    background: var(--bg);
+  }
+  .marquee-track{
+    display: flex;
+    gap: 56px;
+    white-space: nowrap;
+    animation: scroll 40s linear infinite;
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 48px);
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .marquee-track span{ display: inline-flex; align-items: center; gap: 56px; }
+  .marquee-track .dot{ color: var(--accent); }
+  @keyframes scroll{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+
+  /* ------- WORK ------- */
+  .work-head{
+    display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 24px;
+    margin-bottom: clamp(40px, 6vh, 60px);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 24px;
+  }
+  .section-title{
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 84px);
+    line-height: .95;
+    text-transform: uppercase;
+    letter-spacing: -.005em;
+  }
+  .section-title em{
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    text-transform: lowercase;
+    color: var(--accent);
+  }
+  .work-head-meta{
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-mute);
+    text-align: right;
+  }
+
+  .work-grid{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+  .work-card{
+    grid-column: span 6;
+    position: relative;
+    border: 1px solid var(--line);
+    overflow: hidden;
+    transition: border-color .3s;
+  }
+  .work-card:hover{ border-color: var(--accent); }
+  .work-card.tall{ grid-column: span 6; }
+  .work-card.wide{ grid-column: span 12; }
+  .work-card.third{ grid-column: span 4; }
+
+  .work-thumb{
+    aspect-ratio: 16/9;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .work-card.tall .work-thumb{ aspect-ratio: 4/5; }
+
+  /* duotone-ish gradient placeholders per project — replace with <img> or <video> */
+  .thumb-1{ background: linear-gradient(135deg, #1a1a1a 0%, #2a2410 50%, #d4ff3a 220%); }
+  .thumb-2{ background: linear-gradient(160deg, #0a0e1a 0%, #1c2940 60%, #ff3b2f 200%); }
+  .thumb-3{ background: linear-gradient(140deg, #1a1410 0%, #3a2a1a 60%, #ff8a2a 180%); }
+  .thumb-4{ background: linear-gradient(150deg, #0e1a14 0%, #1a3a2a 70%, #d4ff3a 200%); }
+  .thumb-5{ background: linear-gradient(130deg, #1a0a14 0%, #2e1a30 60%, #ff3b88 200%); }
+  .thumb-6{ background: linear-gradient(135deg, #0a1a1f 0%, #1a3848 60%, #5ad4ff 200%); }
+
+  .work-thumb::before{
+    content:''; position:absolute; inset:0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n3'><feTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='1' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n3)' opacity='.22'/></svg>");
+    mix-blend-mode: overlay;
+    pointer-events:none;
+  }
+  .work-thumb::after{
+    content:''; position:absolute; inset:0;
+    background: linear-gradient(to top, rgba(10,10,10,.7) 0%, transparent 50%);
+    pointer-events:none;
+  }
+  .work-thumb img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
+  }
+  .work-thumb-num{
+    position: absolute;
+    top: 18px; left: 18px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--ink); opacity: .75;
+    z-index: 2;
+  }
+  .work-thumb-tc{
+    position: absolute;
+    top: 18px; right: 18px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--ink); opacity: .75;
+    z-index: 2;
+  }
+  .work-thumb-title{
+    position: absolute;
+    bottom: 22px; left: 22px; right: 22px;
+    z-index: 2;
+  }
+  .work-thumb-title h3{
+    font-family: var(--display);
+    font-size: clamp(24px, 3vw, 44px);
+    text-transform: uppercase;
+    line-height: .9;
+    color: var(--ink);
+    font-weight: 400;
+    letter-spacing: -.005em;
+  }
+  .work-thumb-title small{
+    display: block;
+    margin-top: 8px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: var(--ink-dim);
+    text-transform: uppercase;
+  }
+  .work-card .work-meta{
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 20px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-dim);
+    border-top: 1px solid var(--line);
+    background: var(--bg-raised);
+  }
+  .work-meta .arrow{
+    color: var(--ink); transition: transform .3s, color .3s;
+  }
+  .work-card:hover .arrow{ color: var(--accent); transform: translateX(4px); }
+
+  /* ------- STATS ------- */
+  .stats{
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 0;
+    background: var(--bg);
+  }
+  .stats-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .stat{
+    padding: clamp(40px, 6vw, 64px) clamp(20px, 3vw, 40px);
+    border-right: 1px solid var(--line);
+    position: relative;
+  }
+  .stat:last-child{ border-right: 0; }
+  .stat-num{
+    font-family: var(--display);
+    font-size: clamp(56px, 9vw, 130px);
+    line-height: .9;
+    color: var(--ink);
+    letter-spacing: -.01em;
+  }
+  .stat-num span.unit{
+    color: var(--accent);
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: .55em;
+    margin-left: 6px;
+    text-transform: lowercase;
+  }
+  .stat-label{
+    margin-top: 14px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  /* ------- ABOUT ------- */
+  .about-grid{
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: clamp(32px, 5vw, 80px);
+    align-items: start;
+  }
+  .about-photo{
+    aspect-ratio: 4/5;
+    width: 100%;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(212,255,58,.18), transparent 50%),
+      linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .about-photo::after{
+    content:''; position:absolute; inset:0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n4'><feTurbulence type='fractalNoise' baseFrequency='1.0' numOctaves='1' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n4)' opacity='.2'/></svg>");
+    mix-blend-mode: overlay;
+  }
+  .about-photo-corners span{
+    position: absolute; width: 18px; height: 18px;
+    border: 1px solid var(--accent); z-index: 2;
+  }
+  .about-photo-corners span:nth-child(1){ top: 12px; left: 12px; border-right: 0; border-bottom: 0; }
+  .about-photo-corners span:nth-child(2){ top: 12px; right: 12px; border-left: 0; border-bottom: 0; }
+  .about-photo-corners span:nth-child(3){ bottom: 12px; left: 12px; border-right: 0; border-top: 0; }
+  .about-photo-corners span:nth-child(4){ bottom: 12px; right: 12px; border-left: 0; border-top: 0; }
+  .about-photo-tag{
+    position: absolute; bottom: 22px; left: 22px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .16em; color: var(--ink-dim); text-transform: uppercase;
+    z-index: 2;
+  }
+  .about-photo-name{
+    position: absolute; top: 22px; right: 22px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .16em; color: var(--ink-dim); text-transform: uppercase;
+    z-index: 2;
+    text-align: right;
+  }
+
+  .about-body h2{
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 72px);
+    line-height: .95;
+    text-transform: uppercase;
+    margin: 16px 0 28px;
+    letter-spacing: -.005em;
+  }
+  .about-body h2 em{
+    font-family: var(--serif); font-style: italic; font-weight: 300; color: var(--accent);
+    text-transform: lowercase;
+  }
+  .about-body p{
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(17px, 1.4vw, 21px);
+    line-height: 1.55;
+    color: var(--ink-dim);
+    margin-bottom: 18px;
+    max-width: 58ch;
+  }
+  .about-list{
+    margin-top: 36px;
+    border-top: 1px solid var(--line);
+  }
+  .about-list-row{
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 24px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .about-list-row dt{ color: var(--ink-mute); }
+  .about-list-row dd{ color: var(--ink); }
+  .about-list-row dd .accent{ color: var(--accent); }
+
+  /* ------- SHOP ------- */
+  .shop{
+    border-top: 1px solid var(--line);
+    background: var(--bg-raised);
+  }
+  .shop-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: clamp(40px, 6vh, 60px);
+  }
+  .product{
+    border: 1px solid var(--line);
+    background: var(--bg);
+    display: flex; flex-direction: column;
+    transition: border-color .3s, transform .3s;
+  }
+  .product:hover{ border-color: var(--accent); }
+  .product-thumb{
+    aspect-ratio: 4/3;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  .product-thumb::after{
+    content:''; position:absolute; inset:0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n5'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='1' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n5)' opacity='.18'/></svg>");
+    mix-blend-mode: overlay;
+  }
+  /* product 1 — LUTs: split swatches */
+  .prod-luts{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    background: #0a0a0a;
+  }
+  .prod-luts span{ display:block; }
+  .prod-luts .s1{ background: linear-gradient(180deg, #1a1410 0%, #2e2014 60%, #ff8a2a 200%); }
+  .prod-luts .s2{ background: linear-gradient(180deg, #0a0e1a 0%, #1c2940 60%, #5a8aff 200%); }
+  .prod-luts .s3{ background: linear-gradient(180deg, #1a1a1a 0%, #2a2410 50%, #d4ff3a 220%); }
+  .prod-luts .s4{ background: linear-gradient(180deg, #1a0a14 0%, #2e1a30 60%, #ff3b88 200%); }
+  .prod-luts .s5{ background: linear-gradient(180deg, #0e1a14 0%, #1a3a2a 70%, #6affb6 200%); }
+  .prod-luts .s6{ background: linear-gradient(180deg, #100a0a 0%, #401a14 60%, #ff3b2f 200%); }
+
+  /* product 2 — SFX: waveform */
+  .prod-sfx{
+    background: linear-gradient(180deg, #0e0e10 0%, #1a1a20 100%);
+    display: flex; align-items: center; justify-content: center; gap: 4px; padding: 0 24px;
+  }
+  .prod-sfx span{
+    display:block; width: 4px; background: var(--accent); border-radius: 2px;
+    box-shadow: 0 0 8px rgba(212,255,58,.3);
+  }
+
+  /* product 3 — Course: numbers */
+  .prod-course{
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--display);
+    font-size: clamp(60px, 8vw, 120px);
+    color: var(--ink);
+    letter-spacing: -.02em;
+    line-height: .9;
+    position: relative;
+  }
+  .prod-course span.frac{
+    color: var(--accent);
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: .4em;
+    align-self: flex-start;
+    margin-top: 18px;
+    margin-left: 4px;
+  }
+
+  .product-tag{
+    position: absolute; top: 16px; left: 16px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    background: rgba(10,10,10,.85);
+    color: var(--ink); padding: 6px 10px;
+    border: 1px solid var(--line-strong);
+    z-index: 2;
+  }
+  .product-status{
+    position: absolute; top: 16px; right: 16px;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); z-index: 2;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .product-status .dot{
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  .product-body{
+    padding: 24px 22px 22px;
+    display: flex; flex-direction: column; flex: 1;
+  }
+  .product-body h3{
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(26px, 2.4vw, 34px);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -.005em;
+    margin-bottom: 10px;
+  }
+  .product-body p{
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-dim);
+    margin-bottom: 22px;
+    flex: 1;
+  }
+  .product-foot{
+    display: flex; justify-content: space-between; align-items: end;
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+  }
+  .product-price{
+    font-family: var(--display);
+    font-size: 32px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .product-price small{
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--ink-mute);
+    margin-left: 4px;
+  }
+  .product-cta{
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    padding: 12px 16px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    transition: all .25s;
+  }
+  .product-cta:hover{
+    background: var(--accent); border-color: var(--accent); color: #000;
+  }
+
+  /* ------- TESTIMONIALS ------- */
+  .quotes{
+    border-top: 1px solid var(--line);
+  }
+  .quote-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: clamp(40px, 6vh, 60px);
+  }
+  .quote{
+    border: 1px solid var(--line);
+    padding: 36px 32px;
+    background: var(--bg-raised);
+    position: relative;
+  }
+  .quote::before{
+    content:'"';
+    position: absolute;
+    top: -10px;
+    left: 24px;
+    font-family: var(--serif);
+    font-size: 100px;
+    line-height: 1;
+    color: var(--accent);
+    font-weight: 300;
+    font-style: italic;
+  }
+  .quote blockquote{
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 28px;
+    margin-top: 12px;
+  }
+  .quote-author{
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-dim);
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+  }
+  .quote-author strong{ color: var(--ink); font-weight: 500; }
+
+  /* ------- CONTACT ------- */
+  .contact{
+    border-top: 1px solid var(--line);
+    padding: clamp(80px, 14vh, 160px) var(--pad);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-bg{
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 50%, rgba(212,255,58,.06), transparent 70%);
+    pointer-events: none;
+  }
+  .contact-eyebrow{ justify-content: center; margin: 0 auto; }
+  .contact h2{
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(48px, 11vw, 180px);
+    line-height: .85;
+    text-transform: uppercase;
+    margin: 24px 0 32px;
+    letter-spacing: -.01em;
+    position: relative;
+    z-index: 1;
+  }
+  .contact h2 em{
+    font-family: var(--serif); font-style: italic; font-weight: 300;
+    color: var(--accent); text-transform: lowercase;
+  }
+  .contact-cta{
+    display: inline-flex; align-items: center; gap: 14px;
+    padding: 22px 36px;
+    background: var(--accent); color: #000;
+    font-family: var(--mono); font-size: 13px; letter-spacing: .18em; text-transform: uppercase;
+    font-weight: 500;
+    transition: transform .3s;
+    position: relative;
+    z-index: 1;
+  }
+  .contact-cta:hover{ transform: translateY(-2px); }
+  .contact-cta .arrow{ font-size: 18px; }
+  .contact-channels{
+    margin-top: 56px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 24px 56px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-dim);
+    position: relative; z-index: 1;
+  }
+  .contact-channels a{ transition: color .2s; }
+  .contact-channels a:hover{ color: var(--accent); }
+
+  /* ------- FOOTER ------- */
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 40px var(--pad) 32px;
+    background: var(--bg);
+  }
+  .footer-inner{
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 24px;
+    align-items: center;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .footer-inner .center{ text-align: center; }
+  .footer-inner .right{ text-align: right; }
+  .footer-inner a:hover{ color: var(--accent); }
+
+  /* ------- RESPONSIVE ------- */
+  @media (max-width: 980px){
+    .hud-inner{ grid-template-columns: 1fr 1fr; }
+    .hud nav{ grid-column: 1 / -1; order: 3; justify-content: center; padding-top: 6px; border-top: 1px solid var(--line); margin-top: 6px; }
+    .hud-right{ justify-content: flex-end; }
+    .work-grid > *{ grid-column: span 12 !important; }
+    .stats-grid{ grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2n){ border-right: 0; }
+    .stat:nth-child(-n+2){ border-bottom: 1px solid var(--line); }
+    .about-grid{ grid-template-columns: 1fr; }
+    .shop-grid{ grid-template-columns: 1fr; }
+    .quote-grid{ grid-template-columns: 1fr; }
+    .footer-inner{ grid-template-columns: 1fr; text-align: center; }
+    .footer-inner .right, .footer-inner .center{ text-align: center; }
+  }
+  @media (max-width: 640px){
+    .hud-left .loc{ display:none; }
+    .hero-meta-row{ font-size: 10px; }
+    .reel-title-overlay{ font-size: 24px; }
+    .reel-corners{ inset: 12px; }
+    .reel-tc, .reel-rec{ font-size: 10px; }
+  }
+
+  /* reveal anim */
+  .reveal{ opacity: 0; transform: translateY(20px); transition: opacity .9s ease, transform .9s ease; }
+  .reveal.in{ opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ============ HUD TOP BAR ============ -->
+<header class="hud">
+  <div class="hud-inner">
+    <div class="hud-left">
+      <span><span class="rec-dot"></span>REC</span>
+      <span class="loc">21.0285° N · 105.8542° E / HÀ NỘI</span>
+    </div>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#shop">Store</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hud-right">
+      <span id="tc">00:00:00:00</span>
+      <span class="hud-name">COOKED BY ANDO</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-meta-row">
+      <span>Sport Videographer · Colorist · Editor</span>
+      <span>Worldwide / Based in Hà Nội</span>
+    </div>
+
+    <h1>
+      Sport films<br>
+      <span class="em">that make you</span><br>
+      feel <span class="em-accent">the weight</span><br>
+      of the moment.
+    </h1>
+
+    <p class="hero-tagline">
+      Cinematic films for athletes, clubs and brands across Vietnam.
+      Three years on the court and in the ring. Cameras rolling on basketball, pickleball, boxing — wherever the energy is loudest.
+    </p>
+
+    <!-- ============ SHOWREEL ============
+         Replace the placeholder below with a <video autoplay muted loop playsinline> tag
+         pointing at your reel.mp4, or an <iframe> from Vimeo / YouTube. -->
+    <div class="reel" role="button" tabindex="0" aria-label="Play 2026 showreel">
+      <div class="reel-bg"></div>
+      <div class="reel-corners"><span></span><span></span><span></span><span></span></div>
+      <div class="reel-rec"><span class="dot"></span>REC · 4K · 24FPS</div>
+      <div class="reel-tc">TC 00:01:14:23 / 02:48</div>
+      <div class="reel-play">
+        <button class="reel-play-btn" aria-label="Play reel">
+          <span class="triangle"></span>
+          <span>Play 2026 Reel · 02:48</span>
+        </button>
+      </div>
+      <div class="reel-title-overlay">
+        Showreel<br>2026
+        <small>SELECTED WORK · 14 PROJECTS</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE / CLIENTS ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>SPORT VIDEOGRAPHY <em class="dot">/</em> CINEMATIOGRAPHY <em class="dot">/</em> HANOI <em class="dot">/</em> VBA <em class="dot">/</em> PPA <em class="dot">/</em> LUTS <em class="dot">/</em></span>
+    <span>SPORT VIDEOGRAPHY <em class="dot">/</em> CINEMATIOGRAPHY <em class="dot">/</em> HANOI <em class="dot">/</em> VBA <em class="dot">/</em> PPA <em class="dot">/</em> LUTS <em class="dot">/</em></span>
+  </div>
+</div>
+
+<!-- ============ WORK ============ -->
+<section id="work">
+  <div class="container">
+    <div class="work-head">
+      <div>
+        <span class="eyebrow">001 · Selected Films</span>
+        <h2 class="section-title">Work that <em>moved them</em></h2>
+      </div>
+      <div class="work-head-meta">
+        2023 – 2026<br>
+        Vietnam<br>
+        Basketball · Pickleball · Boxing
+      </div>
+    </div>
+
+    <div class="work-grid">
+      <!-- PROJECT 01 — wi4yGa61MyI · May 2026 (newest) -->
+      <article class="work-card wide">
+        <div class="work-thumb">
+          <img src="https://i.ytimg.com/vi/wi4yGa61MyI/hqdefault.jpg" alt="PPA Asia Hanoi Tour" loading="lazy">
+          <span class="work-thumb-num">PROJECT / 01</span>
+
+          <div class="work-thumb-title">
+            <h3>PPA Asia<br>Hanoi Tour</h3>
+          </div>
+        </div>
+        <div class="work-meta">
+          <span>Videographer · Editor</span>
+          <a href="https://youtu.be/wi4yGa61MyI" target="_blank" rel="noopener" class="arrow">Watch on YouTube →</a>
+        </div>
+      </article>
+
+      <!-- PROJECT 02 — yAnn3-lN9eM · May 2026 -->
+      <article class="work-card">
+        <div class="work-thumb">
+          <img src="https://i.ytimg.com/vi/yAnn3-lN9eM/hqdefault.jpg" alt="HNB 2025 Recap Final 1" loading="lazy">
+          <span class="work-thumb-num">PROJECT / 02</span>
+
+          <div class="work-thumb-title">
+            <h3>HNB 2025<br>Recap Final 1</h3>
+          </div>
+        </div>
+        <div class="work-meta">
+          <span>Videographer · Editor</span>
+          <a href="https://youtu.be/yAnn3-lN9eM" target="_blank" rel="noopener" class="arrow">→</a>
+        </div>
+      </article>
+
+      <!-- PROJECT 03 — NS6lX7ukE3o · May 2026 -->
+      <article class="work-card">
+        <div class="work-thumb">
+          <img src="https://i.ytimg.com/vi/NS6lX7ukE3o/hqdefault.jpg" alt="HNB 2025 Season Recap" loading="lazy">
+          <span class="work-thumb-num">PROJECT / 03</span>
+
+          <div class="work-thumb-title">
+            <h3>HNB 2025<br>Season Recap</h3>
+          </div>
+        </div>
+        <div class="work-meta">
+          <span>Videographer · Editor</span>
+          <a href="https://youtu.be/NS6lX7ukE3o" target="_blank" rel="noopener" class="arrow">→</a>
+        </div>
+      </article>
+
+      <!-- PROJECT 04 — UiE3mIwePho · Dec 2025 -->
+      <article class="work-card third">
+        <div class="work-thumb">
+          <img src="https://i.ytimg.com/vi/UiE3mIwePho/hqdefault.jpg" alt="GMDecor Branding video" loading="lazy">
+          <span class="work-thumb-num">PROJECT / 04</span>
+
+          <div class="work-thumb-title">
+            <h3>GMDecor<br>Branding Video</h3>
+          </div>
+        </div>
+        <div class="work-meta">
+          <span>Videographer · Editor</span>
+          <a href="https://youtu.be/UiE3mIwePho" target="_blank" rel="noopener" class="arrow">→</a>
+        </div>
+      </article>
+
+      <!-- PROJECT 05 — ho1ftsooYnM · Nov 2025 -->
+      <article class="work-card third">
+        <div class="work-thumb">
+          <img src="https://i.ytimg.com/vi/ho1ftsooYnM/hqdefault.jpg" alt="A mini movie of NUC 2025" loading="lazy">
+          <span class="work-thumb-num">PROJECT / 05</span>
+
+          <div class="work-thumb-title">
+            <h3>NUC 2025<br>Mini Movie</h3>
+          </div>
+        </div>
+        <div class="work-meta">
+          <span>Videographer · Editor</span>
+          <a href="https://youtu.be/ho1ftsooYnM" target="_blank" rel="noopener" class="arrow">→</a>
+        </div>
+      </article>
+
+      <!-- PROJECT 06 — BdgWJO_uhK0 · Apr 2025 (oldest) -->
+      <article class="work-card third">
+        <div class="work-thumb">
+          <img src="https://i.ytimg.com/vi/BdgWJO_uhK0/hqdefault.jpg" alt="CẢM ƠN ANH DƯƠNG ĐẠI BÀNG" loading="lazy">
+          <span class="work-thumb-num">PROJECT / 06</span>
+
+          <div class="work-thumb-title">
+            <h3>Cảm ơn anh Dương<br>— "Đại Bàng"</h3>
+          </div>
+        </div>
+        <div class="work-meta">
+          <span>Videographer · Editor · Colorist</span>
+          <a href="https://youtu.be/BdgWJO_uhK0" target="_blank" rel="noopener" class="arrow">→</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats" aria-label="Numbers">
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="stat-num">03<span class="unit">yrs</span></div>
+      <div class="stat-label">behind the camera</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">03<span class="unit">+</span></div>
+      <div class="stat-label">years with Hanoi Buffaloes</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">03<span class="unit">sports</span></div>
+      <div class="stat-label">Basketball · Pickleball · Boxing</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">HN<span class="unit">based</span></div>
+      <div class="stat-label">Hà Nội, Vietnam</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo" aria-label="AnDo portrait">
+        <img src="assets/IMG_6784.JPG" alt="AnDo — Sport Videographer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;">
+        <div class="about-photo-corners"><span></span><span></span><span></span><span></span></div>
+        <span class="about-photo-tag">© AN ĐỖ · 2026</span>
+      </div>
+
+      <div class="about-body">
+        <span class="eyebrow">002 · About</span>
+        <h2>I film sport <em>like cinema</em>, not coverage.</h2>
+        <p>
+          I'm AnDo — a sport videographer based in Hà Nội. I started with a passion for sport and a
+          camera, and spent three years embedded with Hanoi Buffaloes — shooting everything from
+          game-day hype reels to player documentaries.
+        </p>
+        <p>
+          My work lives in the small things — the squeak of sneakers before tip-off, tape on a boxer's
+          knuckles, the backhand dink at match point. I grade in DaVinci and believe
+          sound is half the film.
+        </p>
+
+        <dl class="about-list">
+          <div class="about-list-row"><dt>Based</dt><dd>Hà Nội, Vietnam · <span class="accent">Available nationwide</span></dd></div>
+          <div class="about-list-row"><dt>Languages</dt><dd>Tiếng Việt · English</dd></div>
+          <div class="about-list-row"><dt>Camera</dt><dd>Sony · DJI</dd></div>
+          <div class="about-list-row"><dt>Editorial</dt><dd>DaVinci Resolve · Premiere Pro · After Effects</dd></div>
+          <div class="about-list-row"><dt>Specialty</dt><dd>Basketball · Pickleball · Boxing · Running</dd></div>
+          <div class="about-list-row"><dt>Club</dt><dd>Hanoi Buffaloes · <span class="accent">3 seasons</span></dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHOP ============ -->
+<section id="shop" class="shop">
+  <div class="container">
+    <div class="work-head">
+      <div>
+        <span class="eyebrow">003 · The Store</span>
+        <h2 class="section-title">Tools <em>I actually use</em></h2>
+      </div>
+      <div class="work-head-meta">
+        Instant download · .cube / .wav / .mp4<br>
+        Lifetime updates · Worldwide
+      </div>
+    </div>
+
+    <div class="shop-grid">
+      <!-- PRODUCT 1: LUTs -->
+      <article class="product">
+        <div class="product-thumb">
+          <span class="product-tag">.cube · 12 LUTs</span>
+          <span class="product-status"><span class="dot"></span>Available</span>
+          <div class="prod-luts" style="position:absolute;inset:0;">
+            <span class="s1"></span><span class="s2"></span><span class="s3"></span>
+            <span class="s4"></span><span class="s5"></span><span class="s6"></span>
+          </div>
+        </div>
+        <div class="product-body">
+          <h3>SIDELINE / LUTs Vol. 01</h3>
+          <p>The 12 looks I rotate every match day. Built for Sony S-Log3 / S-Cinetone but adapts to any LOG profile. Day games, stadium lights, gym whites — handled.</p>
+          <div class="product-foot">
+            <div class="product-price">$48<small>USD</small></div>
+            <a href="#" class="product-cta">Buy now <span>→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PRODUCT 2: SFX Pack -->
+      <article class="product">
+        <div class="product-thumb">
+          <span class="product-tag">.wav · 240 sounds</span>
+          <span class="product-status"><span class="dot"></span>Available</span>
+          <div class="prod-sfx" style="position:absolute;inset:0;">
+            <!-- waveform bars -->
+            <span style="height:14%"></span><span style="height:42%"></span><span style="height:28%"></span>
+            <span style="height:68%"></span><span style="height:36%"></span><span style="height:88%"></span>
+            <span style="height:24%"></span><span style="height:60%"></span><span style="height:46%"></span>
+            <span style="height:78%"></span><span style="height:32%"></span><span style="height:54%"></span>
+            <span style="height:22%"></span><span style="height:74%"></span><span style="height:38%"></span>
+            <span style="height:62%"></span><span style="height:18%"></span><span style="height:48%"></span>
+            <span style="height:80%"></span><span style="height:34%"></span><span style="height:56%"></span>
+            <span style="height:26%"></span><span style="height:66%"></span><span style="height:40%"></span>
+            <span style="height:72%"></span>
+          </div>
+        </div>
+        <div class="product-body">
+          <h3>STADIUM / SFX Pack</h3>
+          <p>240 sport-ready sound effects. Whistles, crowd swells, ball impacts, glove pops, sneaker squeaks, slow-mo whooshes. Royalty-free for client work.</p>
+          <div class="product-foot">
+            <div class="product-price">$36<small>USD</small></div>
+            <a href="#" class="product-cta">Buy now <span>→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PRODUCT 3: Course -->
+      <article class="product">
+        <div class="product-thumb">
+          <span class="product-tag">Course · 6h video</span>
+          <span class="product-status"><span class="dot"></span>Pre-order</span>
+          <div class="prod-course" style="position:absolute;inset:0;">
+            06<span class="frac">.HRS</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <h3>Sideline to Edit</h3>
+          <p>The full course. Six hours covering camera setup, on-the-fly coverage, audio, editing rhythm, color grading and how I land paid work in Vietnam.</p>
+          <div class="product-foot">
+            <div class="product-price">$129<small>USD</small></div>
+            <a href="#" class="product-cta">Pre-order <span>→</span></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="quotes">
+  <div class="container">
+    <span class="eyebrow">004 · Trusted by</span>
+    <h2 class="section-title" style="margin-top:16px;">Words from <em>the field</em></h2>
+
+    <div class="quote-grid">
+      <div class="quote">
+        <blockquote>
+          An delivered the cleanest game-day reel we've ever put on the big screen. Fast turnaround, zero drama. He lives and breathes basketball.
+        </blockquote>
+        <div class="quote-author">
+          <strong>Linh Trần</strong>
+          <span>Marketing · Hanoi Buffaloes</span>
+        </div>
+      </div>
+
+      <div class="quote">
+        <blockquote>
+          We needed someone who could keep up courtside, in the ring, and on the pickleball court. An never misses the moment — his editing rhythm is on another level.
+        </blockquote>
+        <div class="quote-author">
+          <strong>Minh Đức</strong>
+          <span>Event Organizer · Pickleball HN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT CTA ============ -->
+<section id="contact" class="contact">
+  <div class="contact-bg"></div>
+  <span class="eyebrow contact-eyebrow">005 · Let's roll</span>
+  <h2>Got a match?<br><em>let's film it.</em></h2>
+  <a href="mailto:anblcc2002@gmail.com" class="contact-cta">
+    anblcc2002@gmail.com <span class="arrow">→</span>
+  </a>
+
+  <div class="contact-channels">
+    <a href="https://www.instagram.com/cookedby.ando?igsh=N3RpdTl3a29oMmh4&utm_source=qr" target="_blank" rel="noopener"><strong>IG</strong> @cookedby.ando</a>
+    <a href="https://www.facebook.com/share/18x2WgAEgv/?mibextid=wwXIfr" target="_blank" rel="noopener"><strong>FB</strong> CookedByAnDo</a>
+    <a href="https://www.tiktok.com/@ando11702?_r=1&_t=ZS-964nUf1gLPJ" target="_blank" rel="noopener"><strong>TikTok</strong> @ando11702</a>
+    <a href="https://www.youtube.com/@cookedbyando" target="_blank" rel="noopener"><strong>YT</strong> @cookedbyando</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div class="left">© 2026 An Đỗ · All films / All rights</div>
+    <div class="center">Made in Hà Nội</div>
+    <div class="right"><a href="#top">↑ Back to top</a></div>
+  </div>
+</footer>
+
+<script>
+  // Live timecode in the top HUD — purely cosmetic
+  (function(){
+    const el = document.getElementById('tc');
+    if(!el) return;
+    function pad(n,l=2){ return String(n).padStart(l,'0'); }
+    function tick(){
+      const d = new Date();
+      el.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}:${pad(Math.floor(d.getMilliseconds()/40),2)}`;
+    }
+    setInterval(tick, 40); tick();
+  })();
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  },{threshold:.15});
+  document.querySelectorAll('section, .work-card, .product, .quote').forEach(el=>{
+    el.classList.add('reveal'); io.observe(el);
+  });
+
+  // Click reel placeholder — open showreel (replace with your video URL)
+  document.querySelector('.reel')?.addEventListener('click', ()=>{
+    // window.open('https://vimeo.com/your-reel', '_blank');
+    alert('Replace this with your Vimeo / YouTube reel embed.');
+  });
+</script>
+
+</body>
+</html>
