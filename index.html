@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@300;400;500;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <style>
   /* ------- TOKENS ------- */
@@ -954,103 +955,7 @@
       </div>
     </div>
 
-    <div class="work-grid">
-      <!-- PROJECT 01 — wi4yGa61MyI · May 2026 (newest) -->
-      <article class="work-card wide" data-video-id="wi4yGa61MyI">
-        <div class="work-thumb">
-          <img src="https://i.ytimg.com/vi/wi4yGa61MyI/maxresdefault.jpg" alt="PPA Asia Hanoi Tour" loading="lazy">
-          <span class="work-thumb-num">PROJECT / 01</span>
-
-          <div class="work-thumb-title">
-            <h3>PPA Asia<br>Hanoi Tour</h3>
-          </div>
-        </div>
-        <div class="work-meta">
-          <span>Videographer · Editor</span>
-          <a href="https://youtu.be/wi4yGa61MyI" target="_blank" rel="noopener" class="arrow">Watch on YouTube →</a>
-        </div>
-      </article>
-
-      <!-- PROJECT 02 — NS6lX7ukE3o · May 2026 -->
-      <article class="work-card" data-video-id="NS6lX7ukE3o">
-        <div class="work-thumb">
-          <img src="https://i.ytimg.com/vi/NS6lX7ukE3o/maxresdefault.jpg" alt="HNB 2025 Season Recap" loading="lazy">
-          <span class="work-thumb-num">PROJECT / 02</span>
-
-          <div class="work-thumb-title">
-            <h3>HNB 2025<br>Season Recap</h3>
-          </div>
-        </div>
-        <div class="work-meta">
-          <span>Videographer · Editor</span>
-          <a href="https://youtu.be/NS6lX7ukE3o" target="_blank" rel="noopener" class="arrow">→</a>
-        </div>
-      </article>
-
-      <!-- PROJECT 03 — yAnn3-lN9eM · May 2026 -->
-      <article class="work-card" data-video-id="yAnn3-lN9eM">
-        <div class="work-thumb">
-          <img src="https://i.ytimg.com/vi/yAnn3-lN9eM/maxresdefault.jpg" alt="HNB 2025 Recap Final 1" loading="lazy">
-          <span class="work-thumb-num">PROJECT / 03</span>
-
-          <div class="work-thumb-title">
-            <h3>HNB 2025<br>Recap Final 1</h3>
-          </div>
-        </div>
-        <div class="work-meta">
-          <span>Videographer · Editor</span>
-          <a href="https://youtu.be/yAnn3-lN9eM" target="_blank" rel="noopener" class="arrow">→</a>
-        </div>
-      </article>
-
-      <!-- PROJECT 04 — UiE3mIwePho · Dec 2025 -->
-      <article class="work-card third" data-video-id="UiE3mIwePho">
-        <div class="work-thumb">
-          <img src="https://i.ytimg.com/vi/UiE3mIwePho/maxresdefault.jpg" alt="GMDecor Branding video" loading="lazy">
-          <span class="work-thumb-num">PROJECT / 04</span>
-
-          <div class="work-thumb-title">
-            <h3>GMDecor<br>Branding Video</h3>
-          </div>
-        </div>
-        <div class="work-meta">
-          <span>Videographer · Editor</span>
-          <a href="https://youtu.be/UiE3mIwePho" target="_blank" rel="noopener" class="arrow">→</a>
-        </div>
-      </article>
-
-      <!-- PROJECT 05 — ho1ftsooYnM · Nov 2025 -->
-      <article class="work-card third" data-video-id="ho1ftsooYnM">
-        <div class="work-thumb">
-          <img src="https://i.ytimg.com/vi/ho1ftsooYnM/maxresdefault.jpg" alt="A mini movie of NUC 2025" loading="lazy">
-          <span class="work-thumb-num">PROJECT / 05</span>
-
-          <div class="work-thumb-title">
-            <h3>NUC 2025<br>Mini Movie</h3>
-          </div>
-        </div>
-        <div class="work-meta">
-          <span>Videographer · Editor</span>
-          <a href="https://youtu.be/ho1ftsooYnM" target="_blank" rel="noopener" class="arrow">→</a>
-        </div>
-      </article>
-
-      <!-- PROJECT 06 — BdgWJO_uhK0 · Apr 2025 (oldest) -->
-      <article class="work-card third" data-video-id="BdgWJO_uhK0">
-        <div class="work-thumb">
-          <img src="https://i.ytimg.com/vi/BdgWJO_uhK0/maxresdefault.jpg" alt="CẢM ƠN ANH DƯƠNG ĐẠI BÀNG" loading="lazy">
-          <span class="work-thumb-num">PROJECT / 06</span>
-
-          <div class="work-thumb-title">
-            <h3>Cảm ơn anh Dương<br>— "Đại Bàng"</h3>
-          </div>
-        </div>
-        <div class="work-meta">
-          <span>Videographer · Editor · Colorist</span>
-          <a href="https://youtu.be/BdgWJO_uhK0" target="_blank" rel="noopener" class="arrow">→</a>
-        </div>
-      </article>
-    </div>
+    <div class="work-grid" id="workGrid"></div>
   </div>
 </section>
 
@@ -1089,24 +994,16 @@
       <div class="about-body">
         <span class="eyebrow">002 · About</span>
         <h2>I film sport <em>like cinema</em>, not coverage.</h2>
-        <p>
-          I'm AnDo — a sport videographer based in Hà Nội. I started with a passion for sport and a
-          camera, and spent three years embedded with Hanoi Buffaloes — shooting everything from
-          game-day hype reels to player documentaries.
-        </p>
-        <p>
-          My work lives in the small things — the squeak of sneakers before tip-off, tape on a boxer's
-          knuckles, the backhand dink at match point. I grade in DaVinci and believe
-          sound is half the film.
-        </p>
+        <p id="aboutBio1"></p>
+        <p id="aboutBio2"></p>
 
         <dl class="about-list">
           <div class="about-list-row"><dt>Based</dt><dd>Hà Nội, Vietnam · <span class="accent">Available nationwide</span></dd></div>
           <div class="about-list-row"><dt>Languages</dt><dd>Tiếng Việt · English</dd></div>
-          <div class="about-list-row"><dt>Camera</dt><dd>Sony · DJI</dd></div>
-          <div class="about-list-row"><dt>Editorial</dt><dd>DaVinci Resolve · Premiere Pro · After Effects · Photoshop · Lightroom</dd></div>
-          <div class="about-list-row"><dt>Specialty</dt><dd>Basketball · Pickleball · Boxing · Running</dd></div>
-          <div class="about-list-row"><dt>Club</dt><dd>Hanoi Buffaloes · <span class="accent">3 seasons</span></dd></div>
+          <div class="about-list-row"><dt>Camera</dt><dd id="aboutCamera"></dd></div>
+          <div class="about-list-row"><dt>Editorial</dt><dd id="aboutEditorial"></dd></div>
+          <div class="about-list-row"><dt>Specialty</dt><dd id="aboutSpecialty"></dd></div>
+          <div class="about-list-row"><dt>Club</dt><dd id="aboutClub"></dd></div>
         </dl>
       </div>
     </div>
@@ -1204,27 +1101,7 @@
     <span class="eyebrow">004 · Trusted by</span>
     <h2 class="section-title" style="margin-top:16px;">Words from <em>the field</em></h2>
 
-    <div class="quote-grid">
-      <div class="quote">
-        <blockquote>
-          He knows how to keep raw emotions the way I do love. Through many events I have given special love to NUC — I can feel the pure love, emotion, and passion here. I know he will deliver exactly the emotion through the way he puts it in every frame. He always stuns me!
-        </blockquote>
-        <div class="quote-author">
-          <strong>Nguyen Tuan Anh</strong>
-          <span>Founder & Creative Director · Undertherim</span>
-        </div>
-      </div>
-
-      <div class="quote">
-        <blockquote>
-          Even when you're quietly building something behind the scenes, I'm already waiting for it to blow up. AnDo has a rare instinct for sport — whatever he's cooking, I know it's going to be something special.
-        </blockquote>
-        <div class="quote-author">
-          <strong>Ngo Quang Duong</strong>
-          <span>Marketing Leader · The Cong Viettel</span>
-        </div>
-      </div>
-    </div>
+    <div class="quote-grid" id="quoteGrid"></div>
   </div>
 </section>
 
@@ -1233,15 +1110,15 @@
   <div class="contact-bg"></div>
   <span class="eyebrow contact-eyebrow">005 · Let's roll</span>
   <h2>Got a match?<br><em>let's film it.</em></h2>
-  <a href="mailto:anblcc2002@gmail.com" class="contact-cta">
-    anblcc2002@gmail.com <span class="arrow">→</span>
+  <a id="contactEmail" href="#" class="contact-cta">
+    <span id="contactEmailText"></span> <span class="arrow">→</span>
   </a>
 
   <div class="contact-channels">
-    <a href="https://www.instagram.com/cookedby.ando?igsh=N3RpdTl3a29oMmh4&utm_source=qr" target="_blank" rel="noopener"><strong>IG</strong> @cookedby.ando</a>
-    <a href="https://www.facebook.com/share/18x2WgAEgv/?mibextid=wwXIfr" target="_blank" rel="noopener"><strong>FB</strong> CookedByAnDo</a>
-    <a href="https://www.tiktok.com/@ando11702?_r=1&_t=ZS-964nUf1gLPJ" target="_blank" rel="noopener"><strong>TikTok</strong> @ando11702</a>
-    <a href="https://www.youtube.com/@cookedbyando" target="_blank" rel="noopener"><strong>YT</strong> @cookedbyando</a>
+    <a id="contactIG" href="#" target="_blank" rel="noopener"><strong>IG</strong> @cookedby.ando</a>
+    <a id="contactFB" href="#" target="_blank" rel="noopener"><strong>FB</strong> CookedByAnDo</a>
+    <a id="contactTikTok" href="#" target="_blank" rel="noopener"><strong>TikTok</strong> @ando11702</a>
+    <a id="contactYT" href="#" target="_blank" rel="noopener"><strong>YT</strong> @cookedbyando</a>
   </div>
 </section>
 
@@ -1274,6 +1151,85 @@
   document.querySelectorAll('section, .work-card, .product, .quote').forEach(el=>{
     el.classList.add('reveal'); io.observe(el);
   });
+
+  // ---- CONTENT LOADER ----
+  async function loadContent(){
+    const [work, testimonials, about, settings] = await Promise.all([
+      fetch('/content/work.json').then(r=>r.json()),
+      fetch('/content/testimonials.json').then(r=>r.json()),
+      fetch('/content/about.json').then(r=>r.json()),
+      fetch('/content/settings.json').then(r=>r.json())
+    ]);
+    renderWork(work.items);
+    renderTestimonials(testimonials.items);
+    renderAbout(about);
+    renderSettings(settings);
+  }
+
+  function cardClass(i){ return i===0 ? 'work-card wide' : i<3 ? 'work-card' : 'work-card third'; }
+
+  function renderWork(items){
+    const grid = document.getElementById('workGrid');
+    grid.innerHTML = items.map((item,i)=>{
+      const num = String(i+1).padStart(2,'0');
+      const title = item.title2 ? `${item.title1}<br>${item.title2}` : item.title1;
+      const arrow = i===0 ? 'Watch on YouTube →' : '→';
+      return `<article class="${cardClass(i)}" data-video-id="${item.youtube_id}">
+        <div class="work-thumb">
+          <img src="https://i.ytimg.com/vi/${item.youtube_id}/maxresdefault.jpg" alt="${item.title1}" loading="lazy">
+          <span class="work-thumb-num">PROJECT / ${num}</span>
+          <div class="work-thumb-title"><h3>${title}</h3></div>
+        </div>
+        <div class="work-meta">
+          <span>${item.role}</span>
+          <a href="https://youtu.be/${item.youtube_id}" target="_blank" rel="noopener" class="arrow">${arrow}</a>
+        </div>
+      </article>`;
+    }).join('');
+    grid.querySelectorAll('.work-card[data-video-id]').forEach(card=>{
+      card.addEventListener('click', ()=>openVideo(card.dataset.videoId));
+    });
+    grid.querySelectorAll('article, .work-card').forEach(el=>{ el.classList.add('reveal'); io.observe(el); });
+  }
+
+  function renderTestimonials(items){
+    document.getElementById('quoteGrid').innerHTML = items.map(item=>`
+      <div class="quote reveal">
+        <blockquote>${item.quote}</blockquote>
+        <div class="quote-author">
+          <strong>${item.author}</strong>
+          <span>${item.role}</span>
+        </div>
+      </div>`).join('');
+    document.querySelectorAll('.quote').forEach(el=>io.observe(el));
+  }
+
+  function renderAbout(a){
+    document.getElementById('aboutBio1').textContent = a.bio1;
+    document.getElementById('aboutBio2').textContent = a.bio2;
+    document.getElementById('aboutCamera').textContent = a.camera;
+    document.getElementById('aboutEditorial').textContent = a.editorial;
+    document.getElementById('aboutSpecialty').textContent = a.specialty;
+    document.getElementById('aboutClub').innerHTML = `${a.club} · <span class="accent">${a.club_seasons}</span>`;
+  }
+
+  function renderSettings(s){
+    document.getElementById('contactEmail').href = `mailto:${s.email}`;
+    document.getElementById('contactEmailText').textContent = s.email;
+    document.getElementById('contactIG').href = s.instagram;
+    document.getElementById('contactFB').href = s.facebook;
+    document.getElementById('contactTikTok').href = s.tiktok;
+    document.getElementById('contactYT').href = s.youtube_channel;
+  }
+
+  loadContent();
+
+  // Netlify Identity redirect
+  if(window.netlifyIdentity){
+    window.netlifyIdentity.on('init', user=>{
+      if(!user){ window.netlifyIdentity.on('login', ()=>{ document.location.href='/admin/'; }); }
+    });
+  }
 
   // Video modal
   const modal = document.getElementById('videoModal');

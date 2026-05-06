@@ -1,0 +1,70 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets"
+public_folder: "/assets"
+
+collections:
+  - name: "work"
+    label: "Videos / Work"
+    files:
+      - label: "Danh sách video"
+        name: "work"
+        file: "content/work.json"
+        format: json
+        fields:
+          - label: "Videos"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "YouTube ID", name: "youtube_id", widget: "string", hint: "Chỉ lấy ID — ví dụ: wi4yGa61MyI"}
+              - {label: "Tiêu đề dòng 1", name: "title1", widget: "string"}
+              - {label: "Tiêu đề dòng 2", name: "title2", widget: "string", required: false}
+              - {label: "Vai trò", name: "role", widget: "string"}
+
+  - name: "testimonials"
+    label: "Testimonials"
+    files:
+      - label: "Danh sách testimonial"
+        name: "testimonials"
+        file: "content/testimonials.json"
+        format: json
+        fields:
+          - label: "Quotes"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Nội dung", name: "quote", widget: "text"}
+              - {label: "Tên", name: "author", widget: "string"}
+              - {label: "Chức danh", name: "role", widget: "string"}
+
+  - name: "about"
+    label: "About"
+    files:
+      - label: "Thông tin cá nhân"
+        name: "about"
+        file: "content/about.json"
+        format: json
+        fields:
+          - {label: "Đoạn giới thiệu 1", name: "bio1", widget: "text"}
+          - {label: "Đoạn giới thiệu 2", name: "bio2", widget: "text"}
+          - {label: "Camera", name: "camera", widget: "string"}
+          - {label: "Phần mềm chỉnh sửa", name: "editorial", widget: "string"}
+          - {label: "Chuyên môn", name: "specialty", widget: "string"}
+          - {label: "CLB", name: "club", widget: "string"}
+          - {label: "Số mùa", name: "club_seasons", widget: "string"}
+
+  - name: "settings"
+    label: "Mạng xã hội & Liên hệ"
+    files:
+      - label: "Contact"
+        name: "settings"
+        file: "content/settings.json"
+        format: json
+        fields:
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "Instagram URL", name: "instagram", widget: "string"}
+          - {label: "Facebook URL", name: "facebook", widget: "string"}
+          - {label: "TikTok URL", name: "tiktok", widget: "string"}
+          - {label: "YouTube Channel URL", name: "youtube_channel", widget: "string"}
