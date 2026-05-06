@@ -831,9 +831,43 @@
   /* reveal anim */
   .reveal{ opacity: 0; transform: translateY(20px); transition: opacity .9s ease, transform .9s ease; }
   .reveal.in{ opacity: 1; transform: none; }
+
+  /* ------- VIDEO MODAL ------- */
+  .video-modal{
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,.92);
+    align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .video-modal.open{ display: flex; }
+  .video-modal-inner{
+    position: relative;
+    width: 100%; max-width: 1100px;
+    aspect-ratio: 16/9;
+  }
+  .video-modal-inner iframe{
+    width: 100%; height: 100%; border: 0;
+  }
+  .video-modal-close{
+    position: absolute; top: -44px; right: 0;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .14em;
+    color: var(--ink-dim); cursor: pointer; text-transform: uppercase;
+    transition: color .2s;
+  }
+  .video-modal-close:hover{ color: var(--accent); }
+  .work-thumb{ cursor: pointer; }
 </style>
 </head>
 <body>
+
+<!-- ============ VIDEO MODAL ============ -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <span class="video-modal-close" id="videoModalClose">✕ Close</span>
+    <iframe id="videoModalFrame" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+  </div>
+</div>
 
 <!-- ============ HUD TOP BAR ============ -->
 <header class="hud">
@@ -922,7 +956,7 @@
 
     <div class="work-grid">
       <!-- PROJECT 01 — wi4yGa61MyI · May 2026 (newest) -->
-      <article class="work-card wide">
+      <article class="work-card wide" data-video-id="wi4yGa61MyI">
         <div class="work-thumb">
           <img src="https://i.ytimg.com/vi/wi4yGa61MyI/maxresdefault.jpg" alt="PPA Asia Hanoi Tour" loading="lazy">
           <span class="work-thumb-num">PROJECT / 01</span>
@@ -938,7 +972,7 @@
       </article>
 
       <!-- PROJECT 02 — yAnn3-lN9eM · May 2026 -->
-      <article class="work-card">
+      <article class="work-card" data-video-id="yAnn3-lN9eM">
         <div class="work-thumb">
           <img src="https://i.ytimg.com/vi/yAnn3-lN9eM/maxresdefault.jpg" alt="HNB 2025 Recap Final 1" loading="lazy">
           <span class="work-thumb-num">PROJECT / 02</span>
@@ -954,7 +988,7 @@
       </article>
 
       <!-- PROJECT 03 — NS6lX7ukE3o · May 2026 -->
-      <article class="work-card">
+      <article class="work-card" data-video-id="NS6lX7ukE3o">
         <div class="work-thumb">
           <img src="https://i.ytimg.com/vi/NS6lX7ukE3o/maxresdefault.jpg" alt="HNB 2025 Season Recap" loading="lazy">
           <span class="work-thumb-num">PROJECT / 03</span>
@@ -970,7 +1004,7 @@
       </article>
 
       <!-- PROJECT 04 — UiE3mIwePho · Dec 2025 -->
-      <article class="work-card third">
+      <article class="work-card third" data-video-id="UiE3mIwePho">
         <div class="work-thumb">
           <img src="https://i.ytimg.com/vi/UiE3mIwePho/maxresdefault.jpg" alt="GMDecor Branding video" loading="lazy">
           <span class="work-thumb-num">PROJECT / 04</span>
@@ -986,7 +1020,7 @@
       </article>
 
       <!-- PROJECT 05 — ho1ftsooYnM · Nov 2025 -->
-      <article class="work-card third">
+      <article class="work-card third" data-video-id="ho1ftsooYnM">
         <div class="work-thumb">
           <img src="https://i.ytimg.com/vi/ho1ftsooYnM/maxresdefault.jpg" alt="A mini movie of NUC 2025" loading="lazy">
           <span class="work-thumb-num">PROJECT / 05</span>
@@ -1002,7 +1036,7 @@
       </article>
 
       <!-- PROJECT 06 — BdgWJO_uhK0 · Apr 2025 (oldest) -->
-      <article class="work-card third">
+      <article class="work-card third" data-video-id="BdgWJO_uhK0">
         <div class="work-thumb">
           <img src="https://i.ytimg.com/vi/BdgWJO_uhK0/maxresdefault.jpg" alt="CẢM ƠN ANH DƯƠNG ĐẠI BÀNG" loading="lazy">
           <span class="work-thumb-num">PROJECT / 06</span>
@@ -1241,11 +1275,28 @@
     el.classList.add('reveal'); io.observe(el);
   });
 
-  // Click reel placeholder — open showreel (replace with your video URL)
-  document.querySelector('.reel')?.addEventListener('click', ()=>{
-    // window.open('https://vimeo.com/your-reel', '_blank');
-    alert('Replace this with your Vimeo / YouTube reel embed.');
+  // Video modal
+  const modal = document.getElementById('videoModal');
+  const frame = document.getElementById('videoModalFrame');
+  const closeBtn = document.getElementById('videoModalClose');
+
+  function openVideo(id){
+    frame.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVideo(){
+    modal.classList.remove('open');
+    frame.src = '';
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.work-card[data-video-id]').forEach(card=>{
+    card.addEventListener('click', ()=> openVideo(card.dataset.videoId));
   });
+  closeBtn.addEventListener('click', closeVideo);
+  modal.addEventListener('click', e=>{ if(e.target === modal) closeVideo(); });
+  document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeVideo(); });
 </script>
 
 </body>
