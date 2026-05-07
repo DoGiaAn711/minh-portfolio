@@ -1003,7 +1003,7 @@
           <div class="about-list-row"><dt>Camera</dt><dd id="aboutCamera"></dd></div>
           <div class="about-list-row"><dt>Editorial</dt><dd id="aboutEditorial"></dd></div>
           <div class="about-list-row"><dt>Specialty</dt><dd id="aboutSpecialty"></dd></div>
-          <div class="about-list-row"><dt>Club</dt><dd id="aboutClub"></dd></div>
+          <div class="about-list-row"><dt>Organization</dt><dd id="aboutOrganizations"></dd></div>
         </dl>
       </div>
     </div>
@@ -1210,7 +1210,8 @@
     document.getElementById('aboutCamera').textContent = a.camera;
     document.getElementById('aboutEditorial').textContent = a.editorial;
     document.getElementById('aboutSpecialty').textContent = a.specialty;
-    document.getElementById('aboutClub').innerHTML = `${a.club} · <span class="accent">${a.club_seasons}</span>`;
+    document.getElementById('aboutOrganizations').innerHTML = (a.organizations||[])
+      .map(o=>`${o.name} · <span class="accent">${o.period}</span>`).join('<br>');
   }
 
   function renderSettings(s){

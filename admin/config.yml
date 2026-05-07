@@ -52,8 +52,12 @@ collections:
           - {label: "Camera", name: "camera", widget: "string"}
           - {label: "Phần mềm chỉnh sửa", name: "editorial", widget: "string"}
           - {label: "Chuyên môn", name: "specialty", widget: "string"}
-          - {label: "CLB", name: "club", widget: "string"}
-          - {label: "Số mùa", name: "club_seasons", widget: "string"}
+          - label: "Tổ chức"
+            name: "organizations"
+            widget: "list"
+            fields:
+              - {label: "Tên tổ chức", name: "name", widget: "string"}
+              - {label: "Thời gian", name: "period", widget: "string", hint: "Ví dụ: 2023–2025"}
 
   - name: "settings"
     label: "Mạng xã hội & Liên hệ"

@@ -4,6 +4,8 @@
   "camera": "Sony · DJI",
   "editorial": "DaVinci Resolve · Premiere Pro · After Effects · Photoshop · Lightroom",
   "specialty": "Basketball · Pickleball · Boxing · Running",
-  "club": "Hanoi Buffaloes",
-  "club_seasons": "3 seasons"
+  "organizations": [
+    {"name": "HUST Basketball Club", "period": "2023–2025"},
+    {"name": "Hanoi Buffaloes", "period": "2024–2026"}
+  ]
 }
