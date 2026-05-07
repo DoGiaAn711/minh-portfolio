@@ -5,7 +5,13 @@
   "editorial": "DaVinci Resolve · Premiere Pro · After Effects · Photoshop · Lightroom",
   "specialty": "Basketball · Pickleball · Boxing · Running",
   "organizations": [
-    {"name": "HUST Basketball Club", "period": "2023–2025"},
-    {"name": "Hanoi Buffaloes", "period": "2024–2026"}
+    {
+      "name": "Hanoi Buffaloes",
+      "period": "2024–2026"
+    },
+    {
+      "name": "HUST Basketball Club",
+      "period": "2023–2025"
+    }
   ]
 }
