@@ -22,6 +22,7 @@ collections:
               - {label: "Tiêu đề dòng 1", name: "title1", widget: "string"}
               - {label: "Tiêu đề dòng 2", name: "title2", widget: "string", required: false}
               - {label: "Vai trò", name: "role", widget: "string"}
+              - {label: "Hiển thị trang chính", name: "featured", widget: "boolean", default: false, hint: "Bật để hiện video này trên trang chủ (nên chọn tối đa 3)"}
 
   - name: "testimonials"
     label: "Testimonials"
@@ -86,6 +87,7 @@ collections:
                   - {label: "Pre-order", value: "preorder"}
                   - {label: "Sắp ra mắt", value: "coming_soon"}
               - {label: "Ảnh thumbnail", name: "image", widget: "image", required: false, hint: "Để trống nếu dùng nền mặc định"}
+              - {label: "Hiển thị trang chính", name: "featured", widget: "boolean", default: false, hint: "Bật để hiện sản phẩm này trên trang chủ (nên chọn tối đa 3)"}
 
   - name: "settings"
     label: "Mạng xã hội & Liên hệ"

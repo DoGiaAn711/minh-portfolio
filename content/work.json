@@ -4,49 +4,57 @@
       "youtube_id": "wi4yGa61MyI",
       "title1": "PPA Asia 2026",
       "title2": "Hanoi Tour",
-      "role": "Videographer · Editor"
+      "role": "Videographer · Editor",
+      "featured": true
     },
     {
       "youtube_id": "miV33C0U54w",
       "title1": "Petnimo 1",
       "title2": "product commercial",
-      "role": "Producer · Director · DP · Editor"
+      "role": "Producer · Director · DP · Editor",
+      "featured": true
     },
     {
       "youtube_id": "NS6lX7ukE3o",
       "title1": "HNB 2025",
       "title2": "Season Recap",
-      "role": "Videographer · Editor"
+      "role": "Videographer · Editor",
+      "featured": true
     },
     {
       "youtube_id": "yAnn3-lN9eM",
       "title1": "HNB 2025",
       "title2": "Recap Final 1",
-      "role": "Videographer · Editor"
+      "role": "Videographer · Editor",
+      "featured": false
     },
     {
       "youtube_id": "UiE3mIwePho",
       "title1": "GMDecor",
       "title2": "Branding Video",
-      "role": "Videographer · Editor"
+      "role": "Videographer · Editor",
+      "featured": false
     },
     {
       "youtube_id": "ho1ftsooYnM",
       "title1": "NUC 2025",
       "title2": "Mini Movie",
-      "role": "Videographer · Editor"
+      "role": "Videographer · Editor",
+      "featured": false
     },
     {
       "youtube_id": "BdgWJO_uhK0",
       "title1": "dương \"đại bàng\"",
       "title2": "documentary",
-      "role": "Videographer · Editor · Colorist"
+      "role": "Videographer · Editor · Colorist",
+      "featured": false
     },
     {
       "youtube_id": "ZAfYxYHDnCE",
       "title1": "Sau cánh cửa",
       "title2": "SHORT FILM",
-      "role": "Cinematographer · Editor · Colorist · Sound designer"
+      "role": "Cinematographer · Editor · Colorist · Sound designer",
+      "featured": false
     }
   ]
 }

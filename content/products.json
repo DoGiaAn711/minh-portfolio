@@ -9,7 +9,8 @@
       "cta": "Buy now",
       "link": "#",
       "status": "available",
-      "image": ""
+      "image": "",
+      "featured": true
     },
     {
       "title": "STADIUM / SFX Pack",
@@ -20,7 +21,8 @@
       "cta": "Buy now",
       "link": "#",
       "status": "available",
-      "image": ""
+      "image": "",
+      "featured": true
     },
     {
       "title": "Sideline to Edit",
@@ -31,7 +33,8 @@
       "cta": "Pre-order",
       "link": "#",
       "status": "preorder",
-      "image": ""
+      "image": "",
+      "featured": true
     }
   ]
 }

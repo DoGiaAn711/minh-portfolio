@@ -829,6 +829,16 @@
     .reel-tc, .reel-rec{ font-size: 10px; }
   }
 
+  /* view all link */
+  .view-all-link{
+    display: inline-block;
+    margin-top: 12px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent);
+    transition: opacity .2s;
+  }
+  .view-all-link:hover{ opacity: .7; }
+
   /* reveal anim */
   .reveal{ opacity: 0; transform: translateY(20px); transition: opacity .9s ease, transform .9s ease; }
   .reveal.in{ opacity: 1; transform: none; }
@@ -951,7 +961,8 @@
       <div class="work-head-meta">
         2023 – 2026<br>
         Vietnam<br>
-        Basketball · Pickleball · Boxing
+        Basketball · Pickleball · Boxing<br>
+        <a href="/work" class="view-all-link">View all films →</a>
       </div>
     </div>
 
@@ -1020,7 +1031,8 @@
       </div>
       <div class="work-head-meta">
         Instant download · .cube / .wav / .mp4<br>
-        Lifetime updates · Worldwide
+        Lifetime updates · Worldwide<br>
+        <a href="/shop" class="view-all-link">View all products →</a>
       </div>
     </div>
 
@@ -1105,7 +1117,9 @@
 
   function renderWork(items){
     const grid = document.getElementById('workGrid');
-    grid.innerHTML = items.map((item,i)=>{
+    const featured = items.filter(item => item.featured);
+    const display = featured.length ? featured : items.slice(0, 3);
+    grid.innerHTML = display.map((item,i)=>{
       const num = String(i+1).padStart(2,'0');
       const title = item.title2 ? `${item.title1}<br>${item.title2}` : item.title1;
       const arrow = i===0 ? 'Watch on YouTube →' : '→';
@@ -1152,6 +1166,9 @@
   const STATUS_LABEL = { available: 'Available', preorder: 'Pre-order', coming_soon: 'Coming soon' };
 
   function renderProducts(items){
+    const featured = items.filter(item => item.featured);
+    const display = featured.length ? featured : items.slice(0, 3);
+    items = display;
     const gradients = [
       'linear-gradient(135deg,#1a1410 0%,#2a2410 50%,#d4ff3a 220%)',
       'linear-gradient(160deg,#0a0e1a 0%,#1c2940 60%,#ff3b2f 200%)',
