@@ -20,7 +20,11 @@
       "Bash(curl -s \"https://nominatim.openstreetmap.org/search?q=386+Ngoc+Thuy,+Long+Bien,+Hanoi,+Vietnam&format=json&limit=1\" -H \"User-Agent: portfolio-locator\")",
       "Bash(curl -s \"https://nominatim.openstreetmap.org/search?q=Ngoc+Thuy,+Long+Bien,+Hanoi&format=json&limit=1\" -H \"User-Agent: portfolio-locator\")",
       "Bash(curl -s \"https://nominatim.openstreetmap.org/search?q=Ngoc+Thuy+street,+Long+Bien,+Hanoi&format=json&limit=1\" -H \"User-Agent: portfolio-locator\")",
-      "Bash(mkdir -p /Users/ando_mac/Desktop/minh-portfolio/content /Users/ando_mac/Desktop/minh-portfolio/admin)"
+      "Bash(mkdir -p /Users/ando_mac/Desktop/minh-portfolio/content /Users/ando_mac/Desktop/minh-portfolio/admin)",
+      "Bash(git fetch *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(git stash *)"
     ],
     "additionalDirectories": [
       "/Users/ando_mac/Desktop/minh-portfolio"
