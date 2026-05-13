@@ -24,6 +24,19 @@ collections:
               - {label: "Vai trò", name: "role", widget: "string"}
               - {label: "Hiển thị trang chính", name: "featured", widget: "boolean", default: false, hint: "Bật để hiện video này trên trang chủ (nên chọn tối đa 3)"}
 
+  - name: "showreel"
+    label: "Showreel"
+    files:
+      - label: "Showreel"
+        name: "showreel"
+        file: "content/showreel.json"
+        format: json
+        fields:
+          - {label: "YouTube ID", name: "youtube_id", widget: "string", hint: "Chỉ lấy ID của video showreel — ví dụ: wi4yGa61MyI"}
+          - {label: "Năm", name: "year", widget: "string", hint: "Ví dụ: 2026"}
+          - {label: "Thời lượng", name: "duration", widget: "string", hint: "Ví dụ: 02:48"}
+          - {label: "Dòng phụ đề", name: "subtitle", widget: "string", hint: "Ví dụ: SELECTED WORK · 14 PROJECTS"}
+
   - name: "testimonials"
     label: "Testimonials"
     files:

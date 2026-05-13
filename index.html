@@ -920,23 +920,20 @@
       Three years in the sports industry. Cameras rolling on high intensity sports like basketball, pickleball, boxing... — wherever the energy is loudest.
     </p>
 
-    <!-- ============ SHOWREEL ============
-         Replace the placeholder below with a <video autoplay muted loop playsinline> tag
-         pointing at your reel.mp4, or an <iframe> from Vimeo / YouTube. -->
-    <div class="reel" role="button" tabindex="0" aria-label="Play 2026 showreel">
+    <div class="reel" id="showreelBox" role="button" tabindex="0" aria-label="Play showreel">
       <div class="reel-bg"></div>
       <div class="reel-corners"><span></span><span></span><span></span><span></span></div>
       <div class="reel-rec"><span class="dot"></span>REC · 4K · 24FPS</div>
-      <div class="reel-tc">TC 00:01:14:23 / 02:48</div>
+      <div class="reel-tc" id="reelTc">TC 00:01:14:23 / 02:48</div>
       <div class="reel-play">
-        <button class="reel-play-btn" aria-label="Play reel">
+        <button class="reel-play-btn" id="reelPlayBtn" aria-label="Play reel">
           <span class="triangle"></span>
-          <span>Play 2026 Reel · 02:48</span>
+          <span id="reelPlayLabel">Play Reel</span>
         </button>
       </div>
       <div class="reel-title-overlay">
-        Showreel<br>2026
-        <small>SELECTED WORK · 14 PROJECTS</small>
+        <span id="reelTitle">Showreel</span><br><span id="reelYear">2026</span>
+        <small id="reelSubtitle">SELECTED WORK · 14 PROJECTS</small>
       </div>
     </div>
   </div>
@@ -1099,18 +1096,38 @@
 
   // ---- CONTENT LOADER ----
   async function loadContent(){
-    const [work, testimonials, about, settings, products] = await Promise.all([
+    const [work, testimonials, about, settings, products, showreel] = await Promise.all([
       fetch('/content/work.json').then(r=>r.json()),
       fetch('/content/testimonials.json').then(r=>r.json()),
       fetch('/content/about.json').then(r=>r.json()),
       fetch('/content/settings.json').then(r=>r.json()),
-      fetch('/content/products.json').then(r=>r.json())
+      fetch('/content/products.json').then(r=>r.json()),
+      fetch('/content/showreel.json').then(r=>r.json())
     ]);
     renderWork(work.items);
     renderTestimonials(testimonials.items);
     renderAbout(about);
     renderSettings(settings);
     renderProducts(products.items);
+    renderShowreel(showreel);
+  }
+
+  function renderShowreel(s){
+    document.getElementById('reelYear').textContent = s.year || '2026';
+    document.getElementById('reelSubtitle').textContent = s.subtitle || '';
+    document.getElementById('reelTc').textContent = `TC 00:01:14:23 / ${s.duration || '00:00'}`;
+    document.getElementById('reelPlayLabel').textContent = `Play ${s.year || ''} Reel · ${s.duration || ''}`;
+    const box = document.getElementById('showreelBox');
+    const btn = document.getElementById('reelPlayBtn');
+    if(s.youtube_id){
+      box.style.cursor = 'pointer';
+      [box, btn].forEach(el => el.addEventListener('click', e=>{
+        e.stopPropagation();
+        openVideo(s.youtube_id);
+      }));
+    } else {
+      box.style.cursor = 'default';
+    }
   }
 
   function cardClass(i){ return i===0 ? 'work-card wide' : i<3 ? 'work-card' : 'work-card third'; }
