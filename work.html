@@ -49,13 +49,14 @@
   .hud nav a:hover{ color:var(--accent); }
   .hud-logo{ height:22px; display:block; }
 
-  .page-header{ padding:clamp(48px,8vh,80px) var(--pad) clamp(32px,5vh,56px); border-bottom:1px solid var(--line); }
-  .page-header-inner{ max-width:var(--maxw); margin:0 auto; display:flex; align-items:end; justify-content:space-between; gap:24px; flex-wrap:wrap; }
-  .back-link{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute); display:inline-flex; align-items:center; gap:8px; transition:color .2s; margin-bottom:16px; display:block; }
+  .page-header{ padding:clamp(40px,7vh,72px) var(--pad) clamp(28px,4vh,48px); border-bottom:1px solid var(--line); }
+  .page-header-inner{ max-width:var(--maxw); margin:0 auto; }
+  .back-link{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute); transition:color .2s; display:inline-block; margin-bottom:20px; }
   .back-link:hover{ color:var(--accent); }
+  .page-header-bottom{ display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; }
   .page-title{ font-family:var(--display); font-weight:400; font-size:clamp(40px,7vw,100px); line-height:.9; text-transform:uppercase; letter-spacing:-.01em; }
   .page-title em{ font-family:var(--serif); font-style:italic; font-weight:300; text-transform:lowercase; color:var(--accent); }
-  .page-count{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute); text-align:right; }
+  .page-count{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute); text-align:right; padding-bottom:6px; }
 
   .work-section{ padding:clamp(40px,6vh,72px) var(--pad); }
   .work-section-inner{ max-width:var(--maxw); margin:0 auto; }
@@ -123,11 +124,11 @@
 
 <div class="page-header">
   <div class="page-header-inner">
-    <div>
-      <a href="/" class="back-link">← Back to portfolio</a>
+    <a href="/" class="back-link">← Back to portfolio</a>
+    <div class="page-header-bottom">
       <h1 class="page-title">All <em>films</em></h1>
+      <div class="page-count" id="filmCount"></div>
     </div>
-    <div class="page-count" id="filmCount"></div>
   </div>
 </div>
 
