@@ -59,6 +59,34 @@ collections:
               - {label: "Tên tổ chức", name: "name", widget: "string"}
               - {label: "Thời gian", name: "period", widget: "string", hint: "Ví dụ: 2023–2025"}
 
+  - name: "products"
+    label: "Store / Sản phẩm"
+    files:
+      - label: "Danh sách sản phẩm"
+        name: "products"
+        file: "content/products.json"
+        format: json
+        fields:
+          - label: "Sản phẩm"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Tên sản phẩm", name: "title", widget: "string"}
+              - {label: "Tag định dạng", name: "tag", widget: "string", hint: "Ví dụ: .cube · 12 LUTs"}
+              - {label: "Mô tả", name: "description", widget: "text"}
+              - {label: "Giá (số)", name: "price", widget: "string", hint: "Chỉ điền số — ví dụ: 48"}
+              - {label: "Đơn vị tiền", name: "currency", widget: "string", default: "USD"}
+              - {label: "Nút mua", name: "cta", widget: "string", hint: "Buy now / Pre-order / Coming soon"}
+              - {label: "Link mua", name: "link", widget: "string"}
+              - label: "Trạng thái"
+                name: "status"
+                widget: "select"
+                options:
+                  - {label: "Đang bán", value: "available"}
+                  - {label: "Pre-order", value: "preorder"}
+                  - {label: "Sắp ra mắt", value: "coming_soon"}
+              - {label: "Ảnh thumbnail", name: "image", widget: "image", required: false, hint: "Để trống nếu dùng nền mặc định"}
+
   - name: "settings"
     label: "Mạng xã hội & Liên hệ"
     files:

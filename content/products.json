@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "title": "SIDELINE / LUTs Vol. 01",
+      "tag": ".cube · 12 LUTs",
+      "description": "The 12 looks I rotate every match day. Built for Sony S-Log3 / S-Cinetone but adapts to any LOG profile. Day games, stadium lights, gym whites — handled.",
+      "price": "48",
+      "currency": "USD",
+      "cta": "Buy now",
+      "link": "#",
+      "status": "available",
+      "image": ""
+    },
+    {
+      "title": "STADIUM / SFX Pack",
+      "tag": ".wav · 240 sounds",
+      "description": "240 sport-ready sound effects. Whistles, crowd swells, ball impacts, glove pops, sneaker squeaks, slow-mo whooshes. Royalty-free for client work.",
+      "price": "36",
+      "currency": "USD",
+      "cta": "Buy now",
+      "link": "#",
+      "status": "available",
+      "image": ""
+    },
+    {
+      "title": "Sideline to Edit",
+      "tag": "Course · 6h video",
+      "description": "The full course. Six hours covering camera setup, on-the-fly coverage, audio, editing rhythm, color grading and how I land paid work in Vietnam.",
+      "price": "129",
+      "currency": "USD",
+      "cta": "Pre-order",
+      "link": "#",
+      "status": "preorder",
+      "image": ""
+    }
+  ]
+}

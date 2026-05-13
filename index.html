@@ -1024,74 +1024,7 @@
       </div>
     </div>
 
-    <div class="shop-grid">
-      <!-- PRODUCT 1: LUTs -->
-      <article class="product">
-        <div class="product-thumb">
-          <span class="product-tag">.cube · 12 LUTs</span>
-          <span class="product-status"><span class="dot"></span>Available</span>
-          <div class="prod-luts" style="position:absolute;inset:0;">
-            <span class="s1"></span><span class="s2"></span><span class="s3"></span>
-            <span class="s4"></span><span class="s5"></span><span class="s6"></span>
-          </div>
-        </div>
-        <div class="product-body">
-          <h3>SIDELINE / LUTs Vol. 01</h3>
-          <p>The 12 looks I rotate every match day. Built for Sony S-Log3 / S-Cinetone but adapts to any LOG profile. Day games, stadium lights, gym whites — handled.</p>
-          <div class="product-foot">
-            <div class="product-price">$48<small>USD</small></div>
-            <a href="#" class="product-cta">Buy now <span>→</span></a>
-          </div>
-        </div>
-      </article>
-
-      <!-- PRODUCT 2: SFX Pack -->
-      <article class="product">
-        <div class="product-thumb">
-          <span class="product-tag">.wav · 240 sounds</span>
-          <span class="product-status"><span class="dot"></span>Available</span>
-          <div class="prod-sfx" style="position:absolute;inset:0;">
-            <!-- waveform bars -->
-            <span style="height:14%"></span><span style="height:42%"></span><span style="height:28%"></span>
-            <span style="height:68%"></span><span style="height:36%"></span><span style="height:88%"></span>
-            <span style="height:24%"></span><span style="height:60%"></span><span style="height:46%"></span>
-            <span style="height:78%"></span><span style="height:32%"></span><span style="height:54%"></span>
-            <span style="height:22%"></span><span style="height:74%"></span><span style="height:38%"></span>
-            <span style="height:62%"></span><span style="height:18%"></span><span style="height:48%"></span>
-            <span style="height:80%"></span><span style="height:34%"></span><span style="height:56%"></span>
-            <span style="height:26%"></span><span style="height:66%"></span><span style="height:40%"></span>
-            <span style="height:72%"></span>
-          </div>
-        </div>
-        <div class="product-body">
-          <h3>STADIUM / SFX Pack</h3>
-          <p>240 sport-ready sound effects. Whistles, crowd swells, ball impacts, glove pops, sneaker squeaks, slow-mo whooshes. Royalty-free for client work.</p>
-          <div class="product-foot">
-            <div class="product-price">$36<small>USD</small></div>
-            <a href="#" class="product-cta">Buy now <span>→</span></a>
-          </div>
-        </div>
-      </article>
-
-      <!-- PRODUCT 3: Course -->
-      <article class="product">
-        <div class="product-thumb">
-          <span class="product-tag">Course · 6h video</span>
-          <span class="product-status"><span class="dot"></span>Pre-order</span>
-          <div class="prod-course" style="position:absolute;inset:0;">
-            06<span class="frac">.HRS</span>
-          </div>
-        </div>
-        <div class="product-body">
-          <h3>Sideline to Edit</h3>
-          <p>The full course. Six hours covering camera setup, on-the-fly coverage, audio, editing rhythm, color grading and how I land paid work in Vietnam.</p>
-          <div class="product-foot">
-            <div class="product-price">$129<small>USD</small></div>
-            <a href="#" class="product-cta">Pre-order <span>→</span></a>
-          </div>
-        </div>
-      </article>
-    </div>
+    <div class="shop-grid" id="shopGrid"></div>
   </div>
 </section>
 
@@ -1154,16 +1087,18 @@
 
   // ---- CONTENT LOADER ----
   async function loadContent(){
-    const [work, testimonials, about, settings] = await Promise.all([
+    const [work, testimonials, about, settings, products] = await Promise.all([
       fetch('/content/work.json').then(r=>r.json()),
       fetch('/content/testimonials.json').then(r=>r.json()),
       fetch('/content/about.json').then(r=>r.json()),
-      fetch('/content/settings.json').then(r=>r.json())
+      fetch('/content/settings.json').then(r=>r.json()),
+      fetch('/content/products.json').then(r=>r.json())
     ]);
     renderWork(work.items);
     renderTestimonials(testimonials.items);
     renderAbout(about);
     renderSettings(settings);
+    renderProducts(products.items);
   }
 
   function cardClass(i){ return i===0 ? 'work-card wide' : i<3 ? 'work-card' : 'work-card third'; }
@@ -1212,6 +1147,41 @@
     document.getElementById('aboutSpecialty').textContent = a.specialty;
     document.getElementById('aboutOrganizations').innerHTML = (a.organizations||[])
       .map(o=>`${o.name} · <span class="accent">${o.period}</span>`).join('<br>');
+  }
+
+  const STATUS_LABEL = { available: 'Available', preorder: 'Pre-order', coming_soon: 'Coming soon' };
+
+  function renderProducts(items){
+    const gradients = [
+      'linear-gradient(135deg,#1a1410 0%,#2a2410 50%,#d4ff3a 220%)',
+      'linear-gradient(160deg,#0a0e1a 0%,#1c2940 60%,#ff3b2f 200%)',
+      'linear-gradient(140deg,#1a1410 0%,#3a2a1a 60%,#ff8a2a 180%)',
+      'linear-gradient(150deg,#0e1a14 0%,#1a3a2a 70%,#d4ff3a 200%)',
+      'linear-gradient(130deg,#1a0a14 0%,#2e1a30 60%,#ff3b88 200%)',
+    ];
+    document.getElementById('shopGrid').innerHTML = items.map((item, i)=>{
+      const statusLabel = STATUS_LABEL[item.status] || item.status;
+      const thumb = item.image
+        ? `<img src="${item.image}" alt="${item.title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">`
+        : `<div style="position:absolute;inset:0;background:${gradients[i % gradients.length]};"></div>`;
+      const ctaHref = item.link && item.link !== '#' ? item.link : '#';
+      return `<article class="product reveal">
+        <div class="product-thumb">
+          <span class="product-tag">${item.tag}</span>
+          <span class="product-status"><span class="dot"></span>${statusLabel}</span>
+          ${thumb}
+        </div>
+        <div class="product-body">
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+          <div class="product-foot">
+            <div class="product-price">$${item.price}<small>${item.currency}</small></div>
+            <a href="${ctaHref}" class="product-cta" ${ctaHref!=='#'?'target="_blank" rel="noopener"':''}>${item.cta} <span>→</span></a>
+          </div>
+        </div>
+      </article>`;
+    }).join('');
+    document.querySelectorAll('#shopGrid .product').forEach(el=>io.observe(el));
   }
 
   function renderSettings(s){
